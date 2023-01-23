@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+# Pre-commit script for checking Java code style
+
+# Find all Java files that have been added, modified, or renamed
+JAVA_FILES=$(git diff --cached --name-only --diff-filter=AMR -- '*.java')
+
+# Check if any Java files were found
+if [ -z "$JAVA_FILES" ]; then
+  # No Java files were found, so exit with success
+  exit 0
+fi
+
+# Check the code style of the Java files
+for file in $JAVA_FILES; do
+  # Use the Google Java Format tool to check the code style
+  java -jar google-java-format.jar --skip-sorting-imports --replace "$file"
+done
+
+# Add the formatted Java files to the staging area
+git add $JAVA_FILES
+
+# Exit with success
+exit 0

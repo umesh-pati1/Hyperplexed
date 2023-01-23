@@ -1,0 +1,55 @@
+body {
+  align-items: center;
+  background-color: rgb(20, 20, 20);
+  display: flex;
+  gap: clamp(10px, 4vw, 100px);
+  height: 100vh;
+  justify-content: center;
+  margin: 0rem;
+}
+
+body:hover > #trailer {
+  opacity: 1;
+}
+
+#trailer {
+  background-color: white;
+  border-radius: 20px;
+  display: grid;
+  height: 20px;
+  left: 0px;
+  opacity: 0;
+  place-items: center;
+  pointer-events: none;
+  position: fixed;
+  top: 0px;
+  transition: opacity 500ms ease;
+  width: 20px;
+  z-index: 10000;
+}
+
+#trailer:not([data-type=""]) > #trailer-icon {
+  opacity: 1;
+}
+
+#trailer-icon {
+  font-size: 10px;
+  line-height: 4px;
+
+  opacity: 0;
+  transition: opacity 400ms ease;
+}
+
+.interactable {
+  aspect-ratio: 1 / 1.5;
+  background-position: center 50%;
+  background-size: 100%;
+  opacity: 0.4;
+  transition: background-size 400ms ease, opacity 400ms ease;
+  width: clamp(120px, 40vmin, 600px);
+}
+
+.interactable:hover {
+  background-size: 105%;
+  opacity: 0.8;
+}
